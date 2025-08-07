@@ -5,15 +5,15 @@ using UnityEngine.Android;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float horizontal;
-    private float speed = 8f;
-    private float jumpingPower = 10f; 
-    private bool isFacingRight = true;
+    private float horizontal; 
+    private float speed = 8f; // How fast the character moves
+    private float jumpingPower = 12f; // How strong the jump is
+    private bool isFacingRight = true; // Variable for if they are facing right
 
 
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Transform GroundCheck;
-    [SerializeField] private LayerMask GroundLayer; 
+    [SerializeField] private Rigidbody2D rb; // Gets rigidbody2D info
+    [SerializeField] private Transform GroundCheck; // Follows GroundCheck GameObject
+    [SerializeField] private LayerMask GroundLayer;  // Recognises Ground Layer
 
 
 
@@ -23,14 +23,14 @@ public class PlayerMovement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
 
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump") && IsGrounded()) // If the player presses spacebar and is on the ground
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            rb.velocity = new Vector2(rb.velocity.x, jumpingPower); // Add jumppower to Y Axis
         }
 
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f) // If player lets go of jump stop jumping
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * -0.2f);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * -0.2f); // add more gravity
         }
 
 
@@ -51,9 +51,9 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    private void Flip()
+    private void Flip() // Tracks which direction player is facing
     {
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f) // If player has any movement recognise what direction they are moving. 
         {
             isFacingRight = !isFacingRight;
             Vector3 localscale = transform.localScale;
