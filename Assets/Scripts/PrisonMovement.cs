@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Android;
 
-public class PlayerMovement : MonoBehaviour
+public class PrisonMovement : MonoBehaviour
 {
     private float horizontal; 
     private float speed = 8f; // How fast the character moves
