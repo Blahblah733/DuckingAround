@@ -1,16 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class SwapChar : MonoBehaviour
 {
     public GameObject characterPrisoner;
     public GameObject characterGuard;
+    public CharacterTracker characterTracker;
 
-    private int currentIndex = 0;
+    private GameObject currentCharacter;
+    private int currentIndex = 0; // 0 = Prisoner, 1 = Guard
+
+    private void Start()
+    {
+        // Start as prisoner
+        currentCharacter = Instantiate(characterPrisoner, Vector3.zero, Quaternion.identity);
+        currentIndex = 0;
+    }
 
     private void Update()
     {
+        characterTracker.targetObject = currentCharacter;
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             SwitchCharacter();
@@ -19,20 +30,29 @@ public class SwapChar : MonoBehaviour
 
     void SwitchCharacter()
     {
-        if (characterPrefabs.Length == 0 || currentCharacter == null)
-                return;
-
-        // Save Character Position
+        // Save Position of Character
         Vector3 position = currentCharacter.transform.position;
         Quaternion rotation = currentCharacter.transform.rotation;
 
-        // destroy the current character
+        // Destory Current Character
         Destroy(currentCharacter);
 
-        //cycle to the next character
+        // Switch Index (0 -> 1)
+        currentIndex = (currentIndex + 1) % 2;
 
-        
+        if (currentIndex == 0)
+        {
+            currentCharacter = Instantiate(characterPrisoner, position, rotation);
+        }
+        else
+        {
+            currentCharacter = Instantiate(characterGuard, position, rotation);
+        }
 
+        if (characterTracker != null)
+        { 
+            characterTracker.targetObject = currentCharacter;
+        }
     }
 }
 
