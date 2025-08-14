@@ -10,11 +10,14 @@ public class PlayerAttack : MonoBehaviour
     public int damageDealt = 20;  // Damage to deal
     public Collider2D attackCollider;  // The collider representing the attack hitbox
 
+    private bool isAttacking = false;
     void Update()
     {
         // Detect left-click input
         if (Input.GetMouseButtonDown(0))  // 0 for left-click
         {
+            isAttacking = true;
+            
             // Activate the attack hitbox temporarily (or trigger attack logic)
             if (attackCollider != null)
             {
@@ -28,6 +31,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void DisableAttackCollider()
     {
+        isAttacking = false;
+
         if (attackCollider != null)
         {
             attackCollider.enabled = false;  // Disable the collider after the attack
@@ -36,13 +41,17 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Check if the collider belongs to an enemy
-        EnemyLogic enemyLogic = other.GetComponent<EnemyLogic>();
-        if (enemyLogic != null)
+        if (isAttacking)
         {
-            // Apply damage to the enemy
-            enemyLogic.Damage(damageDealt);
+            // Check if the collider belongs to an enemy
+            EnemyLogic enemyLogic = other.GetComponent<EnemyLogic>();
+            if (enemyLogic != null)
+            {
+                // Apply damage to the enemy
+                enemyLogic.Damage(damageDealt);
+            }
         }
+        
     }
 }
 
