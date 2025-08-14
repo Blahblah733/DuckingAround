@@ -54,6 +54,11 @@ public class SwapChar : MonoBehaviour
             characterTracker.targetObject = currentCharacter;
         }
     }
+
+    public GameObject GetCurrentCharacter()
+    {
+        return currentCharacter;
+    }
 }
 
    
