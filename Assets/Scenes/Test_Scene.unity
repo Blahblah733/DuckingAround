@@ -863,11 +863,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce5c0143ad528643a963720dcaed921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: 4.5, z: 0}
   smoothSpeed: 0.125
-  targetObject: {fileID: 0}
-  characterPrisoner: {fileID: 5500687209021972914, guid: 26072427d3672424590e676e10b1af49, type: 3}
-  characterGuard: {fileID: 5500687209021972914, guid: 4430ce203b9d9de48bafd9d8009192ef, type: 3}
+  swapCharScript: {fileID: 537940089}
 --- !u!114 &1400448877
 MonoBehaviour:
   m_ObjectHideFlags: 0
