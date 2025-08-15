@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-using UnityEngine;
+
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -11,13 +11,14 @@ public class PlayerAttack : MonoBehaviour
     public Collider2D attackCollider;  // The collider representing the attack hitbox
 
     private bool isAttacking = false;
+
     void Update()
     {
         // Detect left-click input
         if (Input.GetMouseButtonDown(0))  // 0 for left-click
         {
             isAttacking = true;
-            
+
             // Activate the attack hitbox temporarily (or trigger attack logic)
             if (attackCollider != null)
             {
@@ -43,7 +44,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (isAttacking)
         {
-            // Check if the collider belongs to an enemy
+            // Check if the collider is the attack collider
             EnemyLogic enemyLogic = other.GetComponent<EnemyLogic>();
             if (enemyLogic != null)
             {
@@ -51,8 +52,8 @@ public class PlayerAttack : MonoBehaviour
                 enemyLogic.Damage(damageDealt);
             }
         }
-        
     }
 }
+
 
 
