@@ -9,6 +9,8 @@ public class PlayerAttack : MonoBehaviour
 {
     public int damageDealt = 20;  // Damage to deal
     public Collider2D attackCollider;  // The collider representing the attack hitbox
+    public LayerMask enemyHitboxLayer; // The layer the enemy hitbox is on
+    public float attackDuration = 0.1f; // How long the attack window is
 
     private bool isAttacking = false;
 
@@ -17,39 +19,41 @@ public class PlayerAttack : MonoBehaviour
         // Detect left-click input
         if (Input.GetMouseButtonDown(0))  // 0 for left-click
         {
-            isAttacking = true;
-
-            // Activate the attack hitbox temporarily (or trigger attack logic)
-            if (attackCollider != null)
-            {
-                attackCollider.enabled = true; // Enable the collider to trigger
-            }
-
-            // Optionally, deactivate it again after a short delay to simulate the attack duration
-            Invoke("DisableAttackCollider", 0.1f);  // Adjust timing as needed
+            StartAttack();
         }
     }
 
-    private void DisableAttackCollider()
+
+    void StartAttack()
+    {
+        isAttacking = true;
+
+        // Add Attack Animation Here
+
+        // End the Attack Window after attackDuration Seconds
+        Invoke(nameof(EndAttack), attackDuration);
+    }
+
+    void EndAttack()
     {
         isAttacking = false;
-
-        if (attackCollider != null)
-        {
-            attackCollider.enabled = false;  // Disable the collider after the attack
-        }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (isAttacking)
         {
-            // Check if the collider is the attack collider
-            EnemyLogic enemyLogic = other.GetComponent<EnemyLogic>();
-            if (enemyLogic != null)
+            if (((1 << other.gameObject.layer) & enemyHitboxLayer) != 0)
             {
-                // Apply damage to the enemy
-                enemyLogic.Damage(damageDealt);
+                // Check if the collider is the attack collider
+                EnemyDamageZone dmgZone = other.GetComponent<EnemyDamageZone>();
+                if (dmgZone != null)
+                {
+                    dmgZone.ApplyDamage(damageDealt);
+
+                    isAttacking=false;
+                }
             }
         }
     }

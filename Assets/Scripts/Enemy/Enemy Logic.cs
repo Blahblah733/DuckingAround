@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class EnemyLogic : MonoBehaviour
 {
-    private Transform enemy;
-
-    private GameObject Enemy;
-
     public int enemyHealth = 100;
 
     // Change this to accept a float instead of an int

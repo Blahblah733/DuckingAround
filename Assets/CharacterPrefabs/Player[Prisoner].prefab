@@ -193,6 +193,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageDealt: 20
   attackCollider: {fileID: 5494793398508647126}
+  enemyHitboxLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!61 &5494793398508647126
 BoxCollider2D:
   m_ObjectHideFlags: 0

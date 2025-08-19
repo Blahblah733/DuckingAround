@@ -36,10 +36,7 @@ public class AIMovement : MonoBehaviour
                 targetObject = swapCharScript.GetCurrentCharacter();
             }
         }
-    }
 
-    void FixedUpdate()
-    {
         if (isPlayerInRange && targetObject != null)
         {
             Vector2 direction = (targetObject.transform.position - transform.position).normalized;
@@ -49,10 +46,11 @@ public class AIMovement : MonoBehaviour
         }
     }
 
+    
+
     // Called when the player enters the collider
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        
         if (other.CompareTag("Player"))
         {
             isPlayerInRange = true;  // Start moving towards the player
