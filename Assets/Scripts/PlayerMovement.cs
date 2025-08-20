@@ -10,12 +10,21 @@ public class PlayerMovement : MonoBehaviour
     private float jumpingPower = 12f; // How strong the jump is
     private bool isFacingRight = true; // Variable for if they are facing right
 
+    public int maxHealth = 100; // Player health is valued to 100
+    public int currentHealth; // Defined later to update player health from ingame events
+    public HealthStats healthStats; // Updates on 'HealthStats'script
+
 
     [SerializeField] private Rigidbody2D rb; // Gets rigidbody2D info
     [SerializeField] private Transform GroundCheck; // Follows GroundCheck GameObject
     [SerializeField] private LayerMask GroundLayer;  // Recognises Ground Layer
 
-
+    // Start is called before the first frame update
+    private void Start()
+    {
+        currentHealth = maxHealth; // On Start current health is stated as max health
+        healthStats.SetMaxHealth(maxHealth); // On Start player has max health
+    }
 
     // Update is called once per frame
     void Update()
@@ -35,6 +44,14 @@ public class PlayerMovement : MonoBehaviour
 
 
         Flip();
+
+        // Not yet finished as 'TakeDamage' must be activated by an event for example; player being attacked
+        /* void TakeDamage(int damage)
+        {
+            currentHealth -= damage; // Updates damage to players current health
+            
+            healthStats.SetHealth(currentHealth);
+        } */
     }
 
     private void FixedUpdate()
