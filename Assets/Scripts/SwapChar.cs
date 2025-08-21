@@ -8,6 +8,7 @@ public class SwapChar : MonoBehaviour
     public GameObject characterPrisoner;
     public GameObject characterGuard;
     public CharacterTracker characterTracker;
+    public ZonePrisoner zonePrisoner;
 
     private GameObject currentCharacter;
     private int currentIndex = 0; // 0 = Prisoner, 1 = Guard
@@ -53,6 +54,12 @@ public class SwapChar : MonoBehaviour
         { 
             characterTracker.targetObject = currentCharacter;
         }
+
+        if (zonePrisoner != null)
+        {
+            zonePrisoner.targetObject = currentCharacter;
+        }
+        
     }
 
     public GameObject GetCurrentCharacter()
