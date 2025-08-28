@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Android;
 
@@ -18,11 +19,18 @@ public class PrisonMovement : MonoBehaviour
 
 
 
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
 
+        animator.SetFloat("Speed", Mathf.Abs(horizontal));
 
         if (Input.GetButtonDown("Jump") && IsGrounded()) // If the player presses spacebar and is on the ground
         {
@@ -34,15 +42,22 @@ public class PrisonMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * -0.2f); // add more gravity
         }
 
+        
+
 
         Flip();
     }
+
+    
+    
+
 
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
     }
+
 
 
 
