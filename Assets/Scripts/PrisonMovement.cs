@@ -5,6 +5,7 @@ using UnityEngine.Android;
 
 public class PrisonMovement : MonoBehaviour
 {
+    private Animator animator;
     private float horizontal; 
     private float speed = 8f; // How fast the character moves
     private float jumpingPower = 12f; // How strong the jump is
@@ -40,7 +41,10 @@ public class PrisonMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
     }
+
+
 
 
     private bool IsGrounded()
