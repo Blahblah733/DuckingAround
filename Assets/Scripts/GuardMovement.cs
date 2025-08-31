@@ -5,10 +5,11 @@ using UnityEngine;
 public class GuardMovement : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 4f; // How fast the character moves
+    private float speed = 8f; // How fast the character moves
     private float jumpingPower = 6f; // How strong the jump is
     private bool isFacingRight = true; // Variable for if they are facing right
-
+    private SpriteRenderer sr;
+    private Animator animator;
 
     [SerializeField] private Rigidbody2D rb; // Gets rigidbody2D info
     [SerializeField] private Transform GroundCheck; // Follows GroundCheck GameObject
@@ -16,11 +17,18 @@ public class GuardMovement : MonoBehaviour
 
 
 
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
+    }
+
     // Update is called once per frame
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
 
+        animator.SetFloat("Speed", Mathf.Abs(horizontal));
 
         if (Input.GetButtonDown("Jump") && IsGrounded()) // If the player presses spacebar and is on the ground
         {
@@ -52,12 +60,13 @@ public class GuardMovement : MonoBehaviour
 
     private void Flip() // Tracks which direction player is facing
     {
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f) // If player has any movement recognise what direction they are moving. 
+        if (horizontal > 0)
         {
-            isFacingRight = !isFacingRight;
-            Vector3 localscale = transform.localScale;
-            localscale.x *= -1f;
-            transform.localScale = localscale;
+            sr.flipX = true;
+        }
+        else if (horizontal < 0)
+        {
+            sr.flipX = false;
         }
 
     }

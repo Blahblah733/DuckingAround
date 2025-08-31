@@ -5,25 +5,26 @@ using UnityEngine;
 
 public class ZonePrisoner : MonoBehaviour
 {
-    public GameObject characterPrisoner;
     public GameObject characterGuard;
     public GameObject targetObject;
-    public TextMeshProUGUI uiText;
+    
+
+    [SerializeField] private GameObject uiTextObject;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (targetObject.name.Contains(characterPrisoner.name))
-        {
-            
-        }
         if (targetObject.name.Contains(characterGuard.name))
         {
-            uiText.text = "Wrong Costume";
+            uiTextObject.SetActive(true);
         }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        uiText.text = "don't mind me";
+        if (targetObject.name.Contains(characterGuard.name))
+        {
+            uiTextObject.SetActive(false);
+        }
     }
 }

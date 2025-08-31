@@ -11,7 +11,7 @@ public class PrisonMovement : MonoBehaviour
     private float speed = 8f; // How fast the character moves
     private float jumpingPower = 12f; // How strong the jump is
     private bool isFacingRight = true; // Variable for if they are facing right
-
+    private SpriteRenderer sr;
 
     [SerializeField] private Rigidbody2D rb; // Gets rigidbody2D info
     [SerializeField] private Transform GroundCheck; // Follows GroundCheck GameObject
@@ -22,7 +22,7 @@ public class PrisonMovement : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
-        
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -72,13 +72,15 @@ public class PrisonMovement : MonoBehaviour
 
     private void Flip() // Tracks which direction player is facing
     {
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f) // If player has any movement recognise what direction they are moving. 
+        if (horizontal > 0)
         {
-            isFacingRight = !isFacingRight;
-            Vector3 localscale = transform.localScale;
-            localscale.x *= -1f;
-            transform.localScale = localscale;
+            sr.flipX = true;
         }
+        else if (horizontal < 0)
+        {
+            sr.flipX= false;
+        }
+
 
     }
 }
