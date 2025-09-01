@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4739526868314116244}
   - component: {fileID: 4202316734623380213}
   - component: {fileID: 3884027857777694880}
-  - component: {fileID: 3454010978109764605}
+  - component: {fileID: 7654044327131489132}
   m_Layer: 5
   m_Name: CShirt1
   m_TagString: Untagged
@@ -219,7 +219,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3454010978109764605
+--- !u!114 &7654044327131489132
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,9 +228,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1711248460011781656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afa766b73f8e7ad4289a7b0d95e938dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a979a6cc319eca43966133dc26d3c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 4739526868314116244}
+  parentAfterDrag: {fileID: 0}
   _source: {fileID: 4202316734623380213}
-  _pickUpClip: {fileID: 8300000, guid: 43935955f1ab1d84390e8089e897fefb, type: 3}
-  _dropClip: {fileID: 8300000, guid: 7b8e5697d8ec9774c9d6a41d6d697d8d, type: 3}
+  _pickUpClip: {fileID: 8300000, guid: 07f8336c24b78a540a9334625800cc67, type: 3}
+  _dropClip: {fileID: 8300000, guid: ba01ccbbe5243734cb99658a9ab82b78, type: 3}

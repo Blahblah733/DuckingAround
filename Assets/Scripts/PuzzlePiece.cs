@@ -9,9 +9,14 @@ public class PuzzlePiece : MonoBehaviour
     
     private bool _dragging;
 
-    private Vector2 _offset;
+    private Vector2 _offset, _originalPosition;
 
-    private void Update()
+    void Awake()
+    {
+        _originalPosition = transform.position;
+    }
+
+    void Update()
     {
         if (!_dragging) return;
 
@@ -20,7 +25,13 @@ public class PuzzlePiece : MonoBehaviour
         transform.position = mousePosition - _offset;
     }
 
-    private void OnMouseDown()
+    void OnMouseUp()
+    {
+        transform.position = _originalPosition;
+        _dragging = false;
+    }
+
+    void OnMouseDown()
     {
         _dragging = true;
         _source.PlayOneShot(_pickUpClip);
