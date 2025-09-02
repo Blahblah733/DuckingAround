@@ -1,17 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Android;
 
-public class PrisonMovement : MonoBehaviour
+public class GuardMovement : MonoBehaviour
 {
-    private Animator animator;
-    private float horizontal; 
+    private float horizontal;
     private float speed = 8f; // How fast the character moves
-    private float jumpingPower = 12f; // How strong the jump is
+    private float jumpingPower = 6f; // How strong the jump is
     private bool isFacingRight = true; // Variable for if they are facing right
     private SpriteRenderer sr;
+    private Animator animator;
 
     [SerializeField] private Rigidbody2D rb; // Gets rigidbody2D info
     [SerializeField] private Transform GroundCheck; // Follows GroundCheck GameObject
@@ -32,7 +30,7 @@ public class PrisonMovement : MonoBehaviour
 
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
 
-        if (Input.GetButtonDown("Jump") && IsGrounded()) // If the player presses spacebar and is on the ground
+        /* if (Input.GetButtonDown("Jump") && IsGrounded()) // If the player presses spacebar and is on the ground
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower); // Add jumppower to Y Axis
         }
@@ -40,26 +38,16 @@ public class PrisonMovement : MonoBehaviour
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f) // If player lets go of jump stop jumping
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * -0.2f); // add more gravity
-        }
-
-        
+        } */
 
 
         Flip();
     }
 
-    
-    
-
-
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-
     }
-
-
-
 
 
     private bool IsGrounded()
@@ -78,9 +66,8 @@ public class PrisonMovement : MonoBehaviour
         }
         else if (horizontal < 0)
         {
-            sr.flipX= false;
+            sr.flipX = false;
         }
-
 
     }
 }

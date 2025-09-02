@@ -23,7 +23,7 @@ public class SwapChar : MonoBehaviour
     private void Update()
     {
         characterTracker.targetObject = currentCharacter;
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             SwitchCharacter();
         }
