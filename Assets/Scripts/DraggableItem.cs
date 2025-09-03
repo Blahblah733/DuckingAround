@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
+using UnityEditor;
 
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public GameObject myPrefab;
     public Image image;
     public Sprite newImage;
     public Sprite oldImage;
@@ -36,7 +38,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     // Player is dragging item
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("Dragging");
+
         transform.position = Input.mousePosition; // Item follows mouse on drag
         image.sprite = newImage;
 
@@ -52,9 +54,9 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         image.sprite = oldImage;
     }
 
-    public void CollectAllItems()
+    /* public void CollectAllItems()
     {
-        childTransform = Washer.transform.Find(childTransform.name);
+        childTransform = Washer.transform.Find("childName");
 
         if (childTransform != null)
         {
@@ -69,6 +71,20 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             Debug.Log("Found child: " + childTransform.name);
             Destroy(childTransform);
         }
-    }
+    } */
+
+    /* public void DestroyAllChildren()
+    {
+        List<GameObject> childToDestroy = new List<GameObject>();
+        foreach (Transform child in transform)
+        {
+            childToDestroy.Add(child.gameObject);
+        }
+
+        foreach (GameObject child in childToDestroy)
+        {
+            Destroy(child);
+        }
+    } */
 
 }

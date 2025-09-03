@@ -14,4 +14,5 @@ public class Slots : MonoBehaviour, IDropHandler
             draggableItem.parentAfterDrag = transform;
         }
     }
+
 }
