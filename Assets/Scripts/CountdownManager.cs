@@ -15,12 +15,6 @@ public class CountdownManager : MonoBehaviour
     private float timeLeft;             
     private bool isCounting = false;
 
-    void Start()
-    {
-        timeLeft = countdownTime;
-        if (countdownText) countdownText.gameObject.SetActive(false);
-    }
-
     void Update()
     {
         if (triggerText == null) return;
@@ -28,18 +22,14 @@ public class CountdownManager : MonoBehaviour
         // Start if triggerText active and not already counting
         if (triggerText.activeSelf && !isCounting)
         {
-            // If you want restart every time it activates:
-            // timeLeft = countdownTime;
-
+            // Always reset before starting
+            ResetCountdown();
             countdownCoroutine = StartCoroutine(Countdown());
         }
-        // Stop if triggerText deactivated while counting
+        // Stop + reset if triggerText deactivated while counting
         else if (!triggerText.activeSelf && isCounting)
         {
-            StopCoroutine(countdownCoroutine);
-            countdownCoroutine = null;
-            isCounting = false;
-            if (countdownText) countdownText.gameObject.SetActive(false);
+            ResetCountdown();
         }
     }
 
@@ -51,24 +41,17 @@ public class CountdownManager : MonoBehaviour
         while (timeLeft > 0f)
         {
             if (!triggerText.activeSelf) // safety check
-                break;
+                yield break;  // exit immediately
 
             countdownText.text = Mathf.CeilToInt(timeLeft).ToString();
-            yield return null; // smoother per-frame decrement
+            yield return null; // update per frame
             timeLeft -= Time.deltaTime;
         }
 
-        if (timeLeft <= 0f)
-        {
-            countdownText.text = "0";
-            SceneManager.LoadScene(sceneToLoad);
-            Debug.Log("Game Over");
-        }
-        else
-        {
-            // countdown was interrupted
-            isCounting = false;
-        }
+        // If we get here, countdown reached 0
+        countdownText.text = "0";
+        Debug.Log("Game Over - loading scene: " + sceneToLoad);
+        SceneManager.LoadScene(sceneToLoad);
     }
 
     public void ResetCountdown()
@@ -79,8 +62,8 @@ public class CountdownManager : MonoBehaviour
         {
             StopCoroutine(countdownCoroutine);
             countdownCoroutine = null;
-            isCounting = false;
         }
+        isCounting = false;
     }
 }
 
