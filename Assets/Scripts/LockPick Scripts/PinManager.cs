@@ -11,16 +11,19 @@ public class PinManager : MonoBehaviour
     public GameObject failText;
     public GameObject completeText;
 
+    public string sceneToLoad;
+    public string sceneFailed;
+
     int currentIndex = 0;
 
     void Awake()
     {
-        // HARD stop all pins so Inspector values can’t make them run
+        // stop all pins so Inspector values can’t make them run
         foreach (var p in pins)
             if (p != null) p.Halt();
         if (failText != null)
             failText.SetActive(false);
-        if (completeText != null) 
+        if (completeText != null)
             completeText.SetActive(false);
     }
 
@@ -55,6 +58,12 @@ public class PinManager : MonoBehaviour
                 Debug.Log("Puzzle Complete!");
                 if (completeText != null)
                     completeText.SetActive(true);
+
+                
+                PuzzleState.PuzzleComplete = true;
+
+               
+                StartCoroutine(LoadSceneAfterDelay(2f));
             }
         }
         else
@@ -80,7 +89,7 @@ public class PinManager : MonoBehaviour
         if (failText != null)
             failText.SetActive(true);
 
-        yield return new WaitForSeconds(2f); // show FAIL for 2 seconds
+        yield return new WaitForSeconds(2f);
 
         if (failText != null)
             failText.SetActive(false);
@@ -90,7 +99,13 @@ public class PinManager : MonoBehaviour
 
     void RestartPuzzle()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(sceneFailed);
+    }
+
+    IEnumerator LoadSceneAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneToLoad);
     }
 }
 
