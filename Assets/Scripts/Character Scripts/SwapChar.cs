@@ -9,7 +9,6 @@ public class SwapChar : MonoBehaviour
     public GameObject characterGuard;
     public CharacterTracker characterTracker;
     public ZonePrisoner zonePrisoner;
-    public ZoneGuard zoneGuard;
 
     private GameObject currentCharacter;
     private int currentIndex = 0; // 0 = Prisoner, 1 = Guard
@@ -27,21 +26,6 @@ public class SwapChar : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SwitchCharacter();
-        }
-
-        if (characterTracker != null)
-        {
-            characterTracker.targetObject = currentCharacter;
-        }
-
-        if (zonePrisoner != null)
-        {
-            zonePrisoner.targetObject = currentCharacter;
-        }
-
-        if (zoneGuard != null)
-        {
-            zoneGuard.targetObject = currentCharacter;
         }
     }
 
@@ -74,11 +58,6 @@ public class SwapChar : MonoBehaviour
         if (zonePrisoner != null)
         {
             zonePrisoner.targetObject = currentCharacter;
-        }
-
-        if (zoneGuard != null)
-        {
-            zoneGuard.targetObject = currentCharacter;
         }
         
     }
