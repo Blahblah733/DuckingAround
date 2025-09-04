@@ -5,7 +5,7 @@ using UnityEngine;
 public class GuardMovement : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 8f; // How fast the character moves
+    private float speed = 4f; // How fast the character moves
     private float jumpingPower = 6f; // How strong the jump is
     private bool isFacingRight = true; // Variable for if they are facing right
     private SpriteRenderer sr;

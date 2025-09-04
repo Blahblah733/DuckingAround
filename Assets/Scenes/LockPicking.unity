@@ -808,7 +808,7 @@ MonoBehaviour:
   - {fileID: 1659718091}
   - {fileID: 1955319450}
   targetLine: {fileID: 740371447}
-  tolerance: 92
+  tolerance: 90
   failText: {fileID: 483393145}
   completeText: {fileID: 307726850}
   sceneToLoad: Main_Level
