@@ -50,6 +50,7 @@ public class CountdownManager : MonoBehaviour
 
         // If we get here, countdown reached 0
         countdownText.text = "0";
+
         Debug.Log("Game Over - loading scene: " + sceneToLoad);
         SceneManager.LoadScene(sceneToLoad);
     }
