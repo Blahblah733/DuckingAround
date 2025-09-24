@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 
 public class Washer : MonoBehaviour, IDropHandler
 {
+
+    public int destroyedObjectCount = 0;
+    
     public void OnDrop(PointerEventData eventData)
     {
         if (transform.childCount == 0)
@@ -49,6 +52,7 @@ public class Washer : MonoBehaviour, IDropHandler
             if (child.gameObject.CompareTag(childTagToDestroy))
             {
                 Destroy(child.gameObject);
+                destroyedObjectCount++;
             }
         }
     }
