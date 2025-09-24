@@ -1874,6 +1874,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slot
       objectReference: {fileID: 0}
+    - target: {fileID: 7953775330132724677, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
+      propertyPath: m_TagString
+      value: DestroyableChild
+      objectReference: {fileID: 0}
     - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1960,7 +1964,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1922884888}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7953775330132724677, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1818442946}
   m_SourcePrefab: {fileID: 100100000, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
 --- !u!224 &1034385477 stripped
 RectTransform:
@@ -2281,13 +2288,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7953775330132724677, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1225749133}
   m_SourcePrefab: {fileID: 100100000, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
 --- !u!224 &1225749127 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
   m_PrefabInstance: {fileID: 1225749126}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1225749133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205296074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47511c4a52c48246bafbbaeb4970f09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1350948273
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2403,6 +2425,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7953775330132724677, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1588985711}
+    - targetCorrespondingSourceObject: {fileID: 7953775330132724677, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1588985716}
   m_SourcePrefab: {fileID: 100100000, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
 --- !u!1001 &1364924279
 PrefabInstance:
@@ -3311,6 +3336,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1588985716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588985703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47511c4a52c48246bafbbaeb4970f09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1606226676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4105,6 +4142,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1818442940 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7953775330132724677, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
+  m_PrefabInstance: {fileID: 1034385476}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1818442946
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818442940}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!224 &1886191104 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
