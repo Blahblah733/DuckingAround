@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ZoneGuard : MonoBehaviour
@@ -14,7 +15,8 @@ public class ZoneGuard : MonoBehaviour
     {
         if (targetObject.name.Contains(characterPrisoner.name))
         {
-            uiTextObject.SetActive(true);
+            Exclamation.InZone = true;
+            Debug.Log("InZone = true");
         }
 
     }
@@ -23,7 +25,8 @@ public class ZoneGuard : MonoBehaviour
     {
         if (targetObject.name.Contains(characterPrisoner.name))
         {
-            uiTextObject.SetActive(false);
+            Exclamation.InZone = false;
         }
     }
+    
 }
