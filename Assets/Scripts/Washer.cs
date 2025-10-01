@@ -8,7 +8,7 @@ public class Washer : MonoBehaviour, IDropHandler
 {
 
     public int destroyedObjectCount = 0;
-    
+
     public void OnDrop(PointerEventData eventData)
     {
         if (transform.childCount == 0)
@@ -19,43 +19,21 @@ public class Washer : MonoBehaviour, IDropHandler
         }
     }
 
-    public string childTagToDestroy = "DestroyableChild";
-    
-    /* public void DestroyAllChildren()
+    private void OnTriggerEnter(Collider other)
     {
-        List<GameObject> childToDestroy = new List<GameObject>();
-        foreach (Transform child in transform)
+        if (other.CompareTag("Shirt")) 
         {
-            childToDestroy.Add(child.gameObject);
+            SortTracker.Instance.ItemSorted(true);
+        }
+        else if (other.CompareTag("Bin")) 
+        {
+            SortTracker.Instance.ItemSorted(false);
         }
 
-        foreach (GameObject child in childToDestroy)
-        {
-            Destroy(child);
-        }
-
-        foreach (Transform child in transform)
-        {
-            if (child.CompareTag(childTagToDestroy))
-            {
-                Destroy(child.gameObject);
-            }
-        }
-    } */
-
-    public void OnTriggerEnter(Collider other)
-    {
-        for (int i = transform.childCount - 1; i >= 0; i--)
-        {
-            Transform child = transform.GetChild(i);
-
-            if (child.gameObject.CompareTag(childTagToDestroy))
-            {
-                Destroy(child.gameObject);
-                destroyedObjectCount++;
-            }
-        }
+        // Destroy AFTER tracking
+        Destroy(other.gameObject);
     }
+
 
 
 }

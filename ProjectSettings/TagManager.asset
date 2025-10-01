@@ -6,6 +6,8 @@ TagManager:
   tags:
   - DestroyableChild
   - Slotz
+  - Clothes
+  - Bin
   layers:
   - Default
   - TransparentFX
