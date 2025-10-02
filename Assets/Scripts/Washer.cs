@@ -6,9 +6,6 @@ using UnityEngine.EventSystems;
 
 public class Washer : MonoBehaviour, IDropHandler
 {
-
-    public int destroyedObjectCount = 0;
-    public int clothesSuccess = 0;
     public void OnDrop(PointerEventData eventData)
     {
         if (transform.childCount == 0)
@@ -21,21 +18,18 @@ public class Washer : MonoBehaviour, IDropHandler
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Clothes")) 
+        if (other.CompareTag("Clothes"))
         {
-            SortTracker.Instance.ItemSorted(true);
-            Debug.Log("Clothes Washed");
+            SortTracker.Instance.ItemSorted(true);  // Correct
+            Debug.Log("Correctly washed laundry.");
         }
-        else if (other.CompareTag("Bin")) 
+        else
         {
-            SortTracker.Instance.ItemSorted(false);
-        } 
+            SortTracker.Instance.ItemSorted(false); // Incorrect
+            Debug.Log("Wrong item in washer!");
+        }
 
-        // Destroy AFTER tracking
-        Destroy(other.gameObject);
-
+        Destroy(other.gameObject); // Remove item after sorting
     }
-
-
 
 }

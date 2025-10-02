@@ -23,7 +23,7 @@ public class Acknowledge : MonoBehaviour
     
     private void OnDestroy()
     {
-        Debug.Log("Washed");
+        
 
         SortTracker.Instance.ItemSorted(true);
     }

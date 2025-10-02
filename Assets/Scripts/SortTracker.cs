@@ -40,6 +40,6 @@ public class SortTracker : MonoBehaviour
     private void WinCheck()
     {
         Debug.Log("win");
-        resultText.text = "You Win! All items sorted correctly!";
+        resultText.gameObject.SetActive(true);
     }
 }
