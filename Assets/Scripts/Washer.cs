@@ -8,7 +8,7 @@ public class Washer : MonoBehaviour, IDropHandler
 {
 
     public int destroyedObjectCount = 0;
-
+    public int clothesSuccess = 0;
     public void OnDrop(PointerEventData eventData)
     {
         if (transform.childCount == 0)
@@ -21,17 +21,19 @@ public class Washer : MonoBehaviour, IDropHandler
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Shirt")) 
+        if (other.CompareTag("Clothes")) 
         {
             SortTracker.Instance.ItemSorted(true);
+            Debug.Log("Clothes Washed");
         }
         else if (other.CompareTag("Bin")) 
         {
             SortTracker.Instance.ItemSorted(false);
-        }
+        } 
 
         // Destroy AFTER tracking
         Destroy(other.gameObject);
+
     }
 
 
