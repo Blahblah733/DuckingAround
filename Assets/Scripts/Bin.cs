@@ -6,7 +6,7 @@ public class Bin : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Trash"))
+        if (other.CompareTag("Bin"))
         {
             SortTracker.Instance.ItemSorted(true);
             Destroy(other.gameObject);
