@@ -5,7 +5,9 @@ using UnityEngine;
 public class Stairs : MonoBehaviour
 {
     public Transform targetLocation;
-    public GameObject text;
+    public GameObject text;   
+    
+
 
     void Start()
     {
@@ -14,7 +16,7 @@ public class Stairs : MonoBehaviour
 
     void Update()
     {
-
+       
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -26,9 +28,9 @@ public class Stairs : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            Debug.Log("Pressed W");
+            Debug.Log("Pressed W (Stars.cs)");
             other.transform.position = targetLocation.position;
-        }
+        } 
     }
 
     private void OnTriggerExit2D(Collider2D other)
