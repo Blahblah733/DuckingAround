@@ -1021,6 +1021,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 589281577}
   wirePrefab: {fileID: 1079980451598387739, guid: 153b5672b146af74da405a307644ca03, type: 3}
+  redWirePrefab: {fileID: 1079980451598387739, guid: 153b5672b146af74da405a307644ca03, type: 3}
+  greenWirePrefab: {fileID: 1079980451598387739, guid: e068e93b8d8dd8a4abd0e8f2b95d7689, type: 3}
+  blueWirePrefab: {fileID: 1079980451598387739, guid: ec1ed1c82daf2e64ab94c3899e95930d, type: 3}
+  yellowWirePrefab: {fileID: 1079980451598387739, guid: d387b9d1429374d4f901b627b0b6220a, type: 3}
 --- !u!4 &1482518762
 Transform:
   m_ObjectHideFlags: 0
