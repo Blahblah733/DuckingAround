@@ -1566,7 +1566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e984ac063cb44b144931f9abb2d19bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 589281577}
   wirePrefab: {fileID: 0}
   redWirePrefab: {fileID: 1079980451598387739, guid: 153b5672b146af74da405a307644ca03, type: 3}
   greenWirePrefab: {fileID: 1079980451598387739, guid: e068e93b8d8dd8a4abd0e8f2b95d7689, type: 3}

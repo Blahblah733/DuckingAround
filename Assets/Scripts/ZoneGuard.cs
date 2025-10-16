@@ -26,7 +26,7 @@ public class ZoneGuard : MonoBehaviour
     {
         if (targetObject.name.Contains(characterPrisoner.name))
         {
-            Exclamation.InZone = false;
+            uiTextObject.SetActive(false);
         }
     }
     

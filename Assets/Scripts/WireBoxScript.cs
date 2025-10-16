@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LockpickDoor : MonoBehaviour
+public class WireBoxScript : MonoBehaviour
 {
-    public string sceneToLoad;                 // Wire
+    public string sceneToLoad;                 // LockPick Puzzle
     public KeyCode interactKey = KeyCode.E;    // key to press
     public BoxCollider2D colliderToDisable;      // Door that Unlocks
 
@@ -25,12 +25,12 @@ public class LockpickDoor : MonoBehaviour
         // Only allow interaction if player is inside the trigger AND puzzle not completed
         if (playerInside && !PuzzleState.PuzzleComplete && Input.GetKeyDown(interactKey))
         {
-            Debug.Log("Load Lockpick");
+            Debug.Log("Load Wire");
             SceneManager.LoadScene(sceneToLoad);
         }
         else if (playerInside && PuzzleState.PuzzleComplete && Input.GetKeyDown(interactKey))
         {
-            Debug.Log("Puzzle already completed, cannot open lockpick scene.");
+            Debug.Log("Puzzle already completed, cannot open Wire scene.");
         }
     }
 
