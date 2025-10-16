@@ -29,4 +29,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Caught.unity
     guid: 90cfc23b0bb17194a9f32ea7dc6e57e7
+  - enabled: 1
+    path: Assets/Scenes/Wires.unity
+    guid: edc68e0ec29885f41ad4106fb5288609
+  - enabled: 1
+    path: Assets/Scenes/Sorting.unity
+    guid: df475c2c16fa5a54697d0d71a0681bef
   m_configObjects: {}

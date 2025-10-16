@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WireConnector : MonoBehaviour
 {
@@ -59,7 +60,7 @@ public class WireConnector : MonoBehaviour
 
                     
                     currentWire.useWorldSpace = true;
-                    currentWire.alignment = LineAlignment.Local;
+                    currentWire.alignment = LineAlignment.TransformZ;
                     currentWire.sortingOrder = 10; // ensures visibility over background
                     currentWire.transform.rotation = Quaternion.identity; // keeps wire flat in 2D
 
@@ -124,6 +125,7 @@ public class WireConnector : MonoBehaviour
         if (completedWires.Count >= 4)
         {
             Debug.Log("Puzzle Complete");
+            SceneManager.LoadScene("End");
         }
     }
 }

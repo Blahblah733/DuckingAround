@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class WireBoxScript : MonoBehaviour
+public class LaundryDoor : MonoBehaviour
 {
-    public string sceneToLoad;                 // LockPick Puzzle
+    public string sceneToLoad;                 // Wire
     public KeyCode interactKey = KeyCode.E;    // key to press
     public BoxCollider2D colliderToDisable;      // Door that Unlocks
 
@@ -14,7 +14,7 @@ public class WireBoxScript : MonoBehaviour
     void Start()
     {
         // If puzzle is already complete, disable the collider immediately
-        if (PuzzleState.PuzzleComplete && colliderToDisable != null)
+        if (laundryState.LaundryComplete && colliderToDisable != null)
         {
             colliderToDisable.enabled = false;
         }
@@ -23,14 +23,14 @@ public class WireBoxScript : MonoBehaviour
     void Update()
     {
         // Only allow interaction if player is inside the trigger AND puzzle not completed
-        if (playerInside && Input.GetKeyDown(interactKey))
+        if (playerInside && !laundryState.LaundryComplete && Input.GetKeyDown(interactKey))
         {
-            Debug.Log("Load Wire");
+            Debug.Log("Load Lockpick");
             SceneManager.LoadScene(sceneToLoad);
         }
-        else if (playerInside && PuzzleState.PuzzleComplete && Input.GetKeyDown(interactKey))
+        else if (playerInside && laundryState.LaundryComplete && Input.GetKeyDown(interactKey))
         {
-            Debug.Log("Puzzle already completed, cannot open Wire scene.");
+            Debug.Log("Puzzle already completed, cannot open lockpick scene.");
         }
     }
 

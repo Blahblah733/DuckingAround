@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SortTracker : MonoBehaviour
 {
@@ -40,6 +41,8 @@ public class SortTracker : MonoBehaviour
     private void WinCheck()
     {
         Debug.Log("win");
+        SceneManager.LoadScene("Main_Level");
         resultText.gameObject.SetActive(true);
+        laundryState.LaundryComplete = true;
     }
 }
