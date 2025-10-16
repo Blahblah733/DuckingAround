@@ -4,10 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - DestroyableChild
-  - Slotz
-  - Clothes
-  - Bin
+  - LightTimer
   layers:
   - Default
   - TransparentFX

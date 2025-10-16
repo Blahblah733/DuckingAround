@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animations.meta
 guid: 1ad98e531b097774787839cfb8f4b98c
+========
+guid: f54d1bd14bd3ca042bd867b519fee8cc
+>>>>>>>> WirePuzzle:Assets/TextMesh Pro.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
