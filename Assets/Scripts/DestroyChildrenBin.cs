@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DestroyChildren : MonoBehaviour
+public class DestroyChildrenBin : MonoBehaviour
 {
     private int lastChildCount;
 
@@ -20,7 +20,7 @@ public class DestroyChildren : MonoBehaviour
             {
                 Transform newChild = transform.GetChild(i);
 
-                if (newChild.CompareTag("Clothes"))
+                if (newChild.CompareTag("Bin"))
                 {
                     Debug.Log("Correct");
                 }
