@@ -23,8 +23,9 @@ public class Washer : MonoBehaviour, IDropHandler
     {
         if (other.CompareTag("Clothes")) 
         {
-            SortTracker.Instance.ItemSorted(true);
             Debug.Log("Clothes Washed");
+            SortTracker.Instance.ItemSorted(true);
+            
         }
         else if (other.CompareTag("Bin")) 
         {
