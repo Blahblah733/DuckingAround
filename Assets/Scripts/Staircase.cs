@@ -45,5 +45,10 @@ public class Staircase : MonoBehaviour
             }
             
         }
+        
+        if (Input.GetKey(KeyCode.W))
+        {
+            Debug.Log("Updated W");
+        }
     }
 }
