@@ -5,15 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class LockpickDoor : MonoBehaviour
 {
-    public string sceneToLoad;                 // Wire
-    public KeyCode interactKey = KeyCode.E;    // key to press
-    public BoxCollider2D colliderToDisable;      // Door that Unlocks
+    public string sceneToLoad;
+    public KeyCode interactKey = KeyCode.E;
+    public BoxCollider2D colliderToDisable;
 
     private bool playerInside = false;
 
     void Start()
     {
-        // If puzzle is already complete, disable the collider immediately
         if (PuzzleState.PuzzleComplete && colliderToDisable != null)
         {
             colliderToDisable.enabled = false;
@@ -22,15 +21,18 @@ public class LockpickDoor : MonoBehaviour
 
     void Update()
     {
-        // Only allow interaction if player is inside the trigger AND puzzle not completed
-        if (playerInside && !PuzzleState.PuzzleComplete && Input.GetKeyDown(interactKey))
+        if (!playerInside) return;
+
+        if (!PuzzleState.PuzzleComplete && Input.GetKeyDown(interactKey))
         {
-            Debug.Log("Load Lockpick");
+            // Save active player's position
+            GameObject player = GameObject.FindWithTag("Player");
+            if (player != null && GameManager.Instance != null)
+            {
+                GameManager.Instance.SavePlayerTransform(player.transform);
+            }
+
             SceneManager.LoadScene(sceneToLoad);
-        }
-        else if (playerInside && PuzzleState.PuzzleComplete && Input.GetKeyDown(interactKey))
-        {
-            Debug.Log("Puzzle already completed, cannot open lockpick scene.");
         }
     }
 
@@ -39,7 +41,6 @@ public class LockpickDoor : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInside = true;
-            Debug.Log("Press E to enter scene.");
         }
     }
 

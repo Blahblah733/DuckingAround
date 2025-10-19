@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SwapChar : MonoBehaviour
 {
     public GameObject characterPrisoner;
     public GameObject characterGuard;
+
     public CharacterTracker characterTracker;
     public ZonePrisoner zonePrisoner;
     public ZoneGuard zoneGuard;
@@ -16,71 +18,65 @@ public class SwapChar : MonoBehaviour
 
     private void Start()
     {
-        // Start as prisoner
-        currentCharacter = Instantiate(characterPrisoner, Vector3.zero, Quaternion.identity);
+        // Determine spawn position
+        Vector3 spawnPos = Vector3.zero;
+        Quaternion spawnRot = Quaternion.identity;
+
+        if (GameManager.Instance != null && GameManager.Instance.hasSavedPosition)
+        {
+            spawnPos = GameManager.Instance.playerPosition;
+            spawnRot = GameManager.Instance.playerRotation;
+            Debug.Log("SwapChar: Restoring saved player position: " + spawnPos);
+        }
+
+        // Spawn starting character
+        currentCharacter = Instantiate(characterPrisoner, spawnPos, spawnRot);
         currentIndex = 0;
+
+        AssignTargetToSystems();
     }
 
     private void Update()
     {
-        characterTracker.targetObject = currentCharacter;
+        // Update trackers
+        if (characterTracker != null) characterTracker.targetObject = currentCharacter;
+        if (zonePrisoner != null) zonePrisoner.targetObject = currentCharacter;
+        if (zoneGuard != null) zoneGuard.targetObject = currentCharacter;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SwitchCharacter();
         }
-
-        if (characterTracker != null)
-        {
-            characterTracker.targetObject = currentCharacter;
-        }
-
-        if (zonePrisoner != null)
-        {
-            zonePrisoner.targetObject = currentCharacter;
-        }
-
-        if (zoneGuard != null)
-        {
-            zoneGuard.targetObject = currentCharacter;
-        }
     }
 
-    void SwitchCharacter()
+    public void SwitchCharacter()
     {
-        // Save Position of Character
+        // Save current position
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SavePlayerTransform(currentCharacter.transform);
+        }
+
         Vector3 position = currentCharacter.transform.position;
         Quaternion rotation = currentCharacter.transform.rotation;
 
-        // Destory Current Character
         Destroy(currentCharacter);
 
-        // Switch Index (0 -> 1)
         currentIndex = (currentIndex + 1) % 2;
 
         if (currentIndex == 0)
-        {
             currentCharacter = Instantiate(characterPrisoner, position, rotation);
-        }
         else
-        {
             currentCharacter = Instantiate(characterGuard, position, rotation);
-        }
 
-        if (characterTracker != null)
-        { 
-            characterTracker.targetObject = currentCharacter;
-        }
+        AssignTargetToSystems();
+    }
 
-        if (zonePrisoner != null)
-        {
-            zonePrisoner.targetObject = currentCharacter;
-        }
-
-        if (zoneGuard != null)
-        {
-            zoneGuard.targetObject = currentCharacter;
-        }
-        
+    private void AssignTargetToSystems()
+    {
+        if (characterTracker != null) characterTracker.targetObject = currentCharacter;
+        if (zonePrisoner != null) zonePrisoner.targetObject = currentCharacter;
+        if (zoneGuard != null) zoneGuard.targetObject = currentCharacter;
     }
 
     public GameObject GetCurrentCharacter()
@@ -88,6 +84,8 @@ public class SwapChar : MonoBehaviour
         return currentCharacter;
     }
 }
+
+
 
    
    
