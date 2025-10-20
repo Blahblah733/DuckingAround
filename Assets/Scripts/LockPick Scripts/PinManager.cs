@@ -105,6 +105,18 @@ public class PinManager : MonoBehaviour
     IEnumerator LoadSceneAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
+
+        // Before switching scenes, make sure the GameManager still exists
+        if (GameManager.Instance != null)
+        {
+            Debug.Log("Returning to Main_Level. Restoring saved position from GameManager...");
+        }
+        else
+        {
+            Debug.LogWarning("GameManager not found before loading main level!");
+        }
+
+        // Load the saved scene (e.g. Main_Level)
         SceneManager.LoadScene(sceneToLoad);
     }
 }

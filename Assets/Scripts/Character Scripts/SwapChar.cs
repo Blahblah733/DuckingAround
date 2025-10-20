@@ -22,23 +22,21 @@ public class SwapChar : MonoBehaviour
         Vector3 spawnPos = Vector3.zero;
         Quaternion spawnRot = Quaternion.identity;
 
+        // If we have saved data, use that instead
         if (GameManager.Instance != null && GameManager.Instance.hasSavedPosition)
         {
             spawnPos = GameManager.Instance.playerPosition;
             spawnRot = GameManager.Instance.playerRotation;
-            Debug.Log("SwapChar: Restoring saved player position: " + spawnPos);
+            currentIndex = GameManager.Instance.lastCharacterIndex;
+            Debug.Log($"SwapChar: Restoring saved player position {spawnPos} for character {currentIndex}");
         }
 
-        // Spawn starting character
-        currentCharacter = Instantiate(characterPrisoner, spawnPos, spawnRot);
-        currentIndex = 0;
-
-        AssignTargetToSystems();
+        // Spawn whichever character was last used
+        SpawnCharacter(currentIndex, spawnPos, spawnRot);
     }
 
     private void Update()
     {
-        // Update trackers
         if (characterTracker != null) characterTracker.targetObject = currentCharacter;
         if (zonePrisoner != null) zonePrisoner.targetObject = currentCharacter;
         if (zoneGuard != null) zoneGuard.targetObject = currentCharacter;
@@ -49,27 +47,32 @@ public class SwapChar : MonoBehaviour
         }
     }
 
+    private void SpawnCharacter(int index, Vector3 position, Quaternion rotation)
+    {
+        if (currentCharacter != null)
+            Destroy(currentCharacter);
+
+        if (index == 0)
+            currentCharacter = Instantiate(characterPrisoner, position, rotation);
+        else
+            currentCharacter = Instantiate(characterGuard, position, rotation);
+
+        currentIndex = index;
+        AssignTargetToSystems();
+    }
+
     public void SwitchCharacter()
     {
-        // Save current position
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.SavePlayerTransform(currentCharacter.transform);
+            GameManager.Instance.SavePlayerTransform(currentCharacter.transform, currentIndex);
         }
 
         Vector3 position = currentCharacter.transform.position;
         Quaternion rotation = currentCharacter.transform.rotation;
 
-        Destroy(currentCharacter);
-
-        currentIndex = (currentIndex + 1) % 2;
-
-        if (currentIndex == 0)
-            currentCharacter = Instantiate(characterPrisoner, position, rotation);
-        else
-            currentCharacter = Instantiate(characterGuard, position, rotation);
-
-        AssignTargetToSystems();
+        int newIndex = (currentIndex + 1) % 2;
+        SpawnCharacter(newIndex, position, rotation);
     }
 
     private void AssignTargetToSystems()
@@ -79,10 +82,7 @@ public class SwapChar : MonoBehaviour
         if (zoneGuard != null) zoneGuard.targetObject = currentCharacter;
     }
 
-    public GameObject GetCurrentCharacter()
-    {
-        return currentCharacter;
-    }
+    public GameObject GetCurrentCharacter() => currentCharacter;
 }
 
 

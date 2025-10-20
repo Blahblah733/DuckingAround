@@ -6,9 +6,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [Header("Saved Player Data")]
     public Vector3 playerPosition;
     public Quaternion playerRotation;
     public bool hasSavedPosition = false;
+
+    [Header("Character Index")]
+    public int lastCharacterIndex = 0; // 0 = Prisoner, 1 = Guard
 
     private void Awake()
     {
@@ -23,12 +27,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Call this before leaving a scene
-    public void SavePlayerTransform(Transform player)
+    /// <summary>
+    /// Saves player transform and the current active character index.
+    /// </summary>
+    public void SavePlayerTransform(Transform player, int characterIndex)
     {
         playerPosition = player.position;
         playerRotation = player.rotation;
+        lastCharacterIndex = characterIndex;
         hasSavedPosition = true;
-        Debug.Log("GameManager: Saved player position " + playerPosition);
+
+        Debug.Log($"[GameManager] Saved position: {playerPosition}, Character index: {characterIndex}");
+    }
+
+    /// <summary>
+    /// Overload that saves using the last known character index.
+    /// </summary>
+    public void SavePlayerTransform(Transform player)
+    {
+        SavePlayerTransform(player, lastCharacterIndex);
     }
 }
