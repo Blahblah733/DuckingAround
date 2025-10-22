@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// File was named as this to begin with for trying a way of fixing the teleportation
+// Now controls just the appearing texts after player triggers their collider
 public class Stairs : MonoBehaviour
 {
-    public Transform targetLocation;
     public GameObject text;   
     
 
@@ -25,12 +27,6 @@ public class Stairs : MonoBehaviour
         {
             text.SetActive(true);
         }
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Debug.Log("Pressed W (Stars.cs)");
-            other.transform.position = targetLocation.position;
-        } 
     }
 
     private void OnTriggerExit2D(Collider2D other)
