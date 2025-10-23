@@ -1304,7 +1304,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.9178663, y: 2.4941964, z: 0.54039}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1225749127}
   m_Father: {fileID: 1451726369}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2128,8 +2129,6 @@ RectTransform:
   - {fileID: 256717708}
   - {fileID: 1929420210}
   - {fileID: 1691333221}
-  - {fileID: 1588985704}
-  - {fileID: 1225749127}
   m_Father: {fileID: 1451726369}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -2437,7 +2436,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1170555136}
+    m_TransformParent: {fileID: 387315366}
     m_Modifications:
     - target: {fileID: 6373380072675684611, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
       propertyPath: Bin
@@ -2481,11 +2480,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -456.4514
+      value: 175.35294
       objectReference: {fileID: 0}
     - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 179.3375
+      value: 230.45688
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5214128
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.40093073
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.8505154
       objectReference: {fileID: 0}
     - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2517,11 +2528,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 166.73927
+      value: -2.221634
       objectReference: {fileID: 0}
     - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 239.49313
+      value: 23.451721
       objectReference: {fileID: 0}
     - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2771,7 +2782,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1170555136}
+    m_TransformParent: {fileID: 1387243701}
     m_Modifications:
     - target: {fileID: 6373380072675684611, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
       propertyPath: Bin
@@ -2815,11 +2826,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -612.8
+      value: -162.12045
       objectReference: {fileID: 0}
     - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 135.9274
+      value: -52.457123
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.48320848
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.56848055
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.48320848
       objectReference: {fileID: 0}
     - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2851,11 +2874,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -205.65997
+      value: 0.16427612
       objectReference: {fileID: 0}
     - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.78809
+      value: -8.079193
       objectReference: {fileID: 0}
     - target: {fileID: 8540887905579907008, guid: d02c1abb9173a754b9a81762fc576046, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3081,7 +3104,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.0695, y: 1.759075, z: 2.0695}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1588985704}
   m_Father: {fileID: 1451726369}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -5353,10 +5377,10 @@ RectTransform:
   - {fileID: 1663527491}
   m_Father: {fileID: 1451726369}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -407, y: 1.1644897}
-  m_SizeDelta: {x: 34.9365, y: 34.9365}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 126, y: 1.1644897}
+  m_SizeDelta: {x: 1100.9365, y: 554.9365}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2052878017
 MonoBehaviour:
@@ -5522,7 +5546,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -421, y: 195}
+  m_AnchoredPosition: {x: 424, y: 195}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2105841124
