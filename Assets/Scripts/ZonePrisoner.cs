@@ -10,7 +10,7 @@ public class ZonePrisoner : MonoBehaviour
 
 
     [SerializeField] private GameObject uiTextObject;
-    [SerializeField] private string Tag = "PrisonerZone";
+    [SerializeField] private GameObject exclamationMarks;
 
 
 
@@ -21,34 +21,19 @@ public class ZonePrisoner : MonoBehaviour
             //Exclamation.InZone = true;
             uiTextObject.SetActive(true);
 
-            GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
-
-            foreach (GameObject obj in objects)
-            {
-                obj.SetActive(true);
-                Debug.Log("! Should be there");
-            }
+            exclamationMarks.SetActive(true);            
             Debug.Log("InZone = true");
         }
 
     }
 
-    public void ActivateAllWithTag(string tag)
-    {
-        Debug.Log("! Should Appear");
-        GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
-
-        foreach (GameObject obj in objects)
-        { 
-            obj.SetActive(true);
-        }
-    }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (targetObject.name.Contains(characterGuard.name))
         {
             uiTextObject.SetActive(false);
+            exclamationMarks.SetActive(false);
         }
     }
 

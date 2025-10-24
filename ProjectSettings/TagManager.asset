@@ -7,8 +7,6 @@ TagManager:
   - LightTimer
   - Bin
   - Clothes
-  - '!'
-  - PrisonerZone
   layers:
   - Default
   - TransparentFX
