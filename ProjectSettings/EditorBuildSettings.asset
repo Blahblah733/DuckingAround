@@ -44,4 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/G-O Vent.unity
     guid: 1d3728df558648d4a967ff9489e0c4ca
+  - enabled: 1
+    path: Assets/Scenes/VentPuzzle.unity
+    guid: 3222d01a90363d842be58dc8d9652d81
   m_configObjects: {}
