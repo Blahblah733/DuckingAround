@@ -8,6 +8,7 @@ using UnityEditor;
 
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    // Components for dragged items
     public GameObject myPrefab;
     public Image image;
     public Sprite newImage;
@@ -40,7 +41,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
 
         transform.position = Input.mousePosition; // Item follows mouse on drag
-        image.sprite = newImage;
+        image.sprite = newImage; // Sets new image when item is dragged
 
     }
 
