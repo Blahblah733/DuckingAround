@@ -30,7 +30,7 @@ public class NPCMovement : MonoBehaviour
 
         if (npcInRange && pointB)
         {
-            Vector2 direction = (pointA.transform.position - transform.position).normalized;
+            Vector2 direction = (pointB.transform.position - transform.position).normalized;
             Vector2 newPosition = rb.position * direction * speed * Time.fixedDeltaTime;
             rb.MovePosition(newPosition);
         }
@@ -51,12 +51,12 @@ public class NPCMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("npcRangeA"))
+        if (other.CompareTag("Player"))
         {
             npcInRange = false;
         }
 
-        if (other.CompareTag("npcRangeB"))
+        if (other.CompareTag("Player"))
         {
             npcInRange = false;
         }
