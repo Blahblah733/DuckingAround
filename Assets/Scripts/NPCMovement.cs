@@ -9,7 +9,6 @@ public class NPCMovement : MonoBehaviour
     public GameObject pointB;
     private Rigidbody2D rb;
     public float speed = 2f;
-    public bool npcInRange;
 
 
     // Start is called before the first frame update
@@ -21,44 +20,11 @@ public class NPCMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (npcInRange && pointA)
-        {
-            Vector2 direction = (pointA.transform.position - transform.position).normalized;
-            Vector2 newPosition = rb.position * direction * speed * Time.fixedDeltaTime;
-            rb.MovePosition(newPosition);
-        }
 
-        if (npcInRange && pointB)
-        {
-            Vector2 direction = (pointB.transform.position - transform.position).normalized;
-            Vector2 newPosition = rb.position * direction * speed * Time.fixedDeltaTime;
-            rb.MovePosition(newPosition);
-        }
+        Vector2 direction = (pointB.transform.position - transform.position).normalized;
+        Vector2 newPosition = rb.position * direction * speed * Time.fixedDeltaTime;
+        rb.MovePosition(newPosition);
+
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("npcRangeA"))
-        {
-            npcInRange = true;
-        }
-
-        if (other.CompareTag("npcRangeB"))
-        {
-            npcInRange = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            npcInRange = false;
-        }
-
-        if (other.CompareTag("Player"))
-        {
-            npcInRange = false;
-        }
-    }
 }
