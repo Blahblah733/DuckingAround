@@ -5,26 +5,39 @@ using UnityEngine;
 
 public class NPCMovement : MonoBehaviour
 {
-    public GameObject pointA;
-    public GameObject pointB;
-    private Rigidbody2D rb;
-    public float speed = 2f;
+    public Transform pointA;
+    public Transform pointB;
 
+    public float speed = 5f;
 
-    // Start is called before the first frame update
-    void Start()
+    private Transform targetPoint;
+
+    private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        targetPoint = pointB;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        // Move toward the target point
+        transform.position = Vector2.MoveTowards(transform.position, targetPoint.position, speed * Time.deltaTime);
 
-        Vector2 direction = (pointB.transform.position - transform.position).normalized;
-        Vector2 newPosition = rb.position * direction * speed * Time.fixedDeltaTime;
-        rb.MovePosition(newPosition);
+        // Check if we've reached the target
+        if (Vector2.Distance(transform.position, targetPoint.position) < 0.1f)
+        {
+            // Switch direction
+            targetPoint = (targetPoint == pointB) ? pointA : pointB;
 
+            // Flip sprite immediately upon direction change
+            Flip();
+        }
+    }
+
+    private void Flip()
+    {
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
     }
 
 }
