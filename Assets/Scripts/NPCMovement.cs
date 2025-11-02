@@ -15,7 +15,7 @@ public class NPCMovement : MonoBehaviour
     private void Start()
     {
         targetPoint = pointB;
-    }
+    } 
 
     private void Update()
     {

@@ -9,7 +9,7 @@ public class Begin : MonoBehaviour
 
     public void StartGame()
     {
-        Debug.Log("Load HTP");
+        Debug.Log("Loaded Scene");
         SceneManager.LoadScene(sceneToLoad);
     }
 }
