@@ -9,6 +9,7 @@ public class MoreTexts : MonoBehaviour
     public GameObject text2;
     public GameObject text3;
     public GameObject text4;
+    public GameObject text5;
     private bool isInTrigger = false;
     public GameObject bubble;
     public GameObject arrow;
