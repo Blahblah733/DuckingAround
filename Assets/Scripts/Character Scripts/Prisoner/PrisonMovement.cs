@@ -13,6 +13,8 @@ public class PrisonMovement : MonoBehaviour
     private bool isFacingRight = true; // Variable for if they are facing right
     private SpriteRenderer sr;
 
+    public AudioSource footstepSound;
+
     [SerializeField] private Rigidbody2D rb; // Gets rigidbody2D info
     [SerializeField] private Transform GroundCheck; // Follows GroundCheck GameObject
     [SerializeField] private LayerMask GroundLayer;  // Recognises Ground Layer
@@ -23,28 +25,17 @@ public class PrisonMovement : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        footstepSound.Play(); // just to test at start
     }
 
     // Update is called once per frame
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
-
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
 
-        /* if (Input.GetButtonDown("Jump") && IsGrounded()) // If the player presses spacebar and is on the ground
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower); // Add jumppower to Y Axis
-        }
-
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f) // If player lets go of jump stop jumping
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * -0.2f); // add more gravity
-        } */
-
-        
-
-
+        HandleFootsteps();
         Flip();
     }
 
@@ -57,7 +48,6 @@ public class PrisonMovement : MonoBehaviour
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
     }
-
 
 
 
@@ -82,5 +72,24 @@ public class PrisonMovement : MonoBehaviour
         }
 
 
+    }
+
+    private void HandleFootsteps()
+    {
+        // Check if player is moving left or right
+        if (Mathf.Abs(horizontal) > 0.1f)
+        {
+            if (!footstepSound.isPlaying)
+            {
+                footstepSound.Play();
+            }
+        }
+        else
+        {
+            if (footstepSound.isPlaying)
+            {
+                footstepSound.Stop();
+            }
+        }
     }
 }
