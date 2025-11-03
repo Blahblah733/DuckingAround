@@ -26,7 +26,7 @@ public class PrisonMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        footstepSound.Play(); // just to test at start
+  
     }
 
     // Update is called once per frame
