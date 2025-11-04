@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoreTexts : MonoBehaviour
+public class MoreTexts2 : MonoBehaviour
 {
     private int keyPressCount = 0;
     public GameObject text1;
+    public GameObject text2;
     private bool isInTrigger = false;
     public GameObject bubble;
+    public GameObject arrow;
 
     // Start is called before the first frame update
     void Start()
     {
         bubble.SetActive(false);
         text1.SetActive(false);
+        arrow.SetActive(false);
         
     }
 
@@ -26,7 +29,15 @@ public class MoreTexts : MonoBehaviour
             if (keyPressCount == 1)
             {
                 text1.SetActive(false);
+                text2.SetActive(true);
+            }
+            if (keyPressCount == 2)
+            {
+                text1.SetActive(false);
+                text2.SetActive(false);
                 bubble.SetActive(false);
+                arrow.SetActive(false);
+
             }
             
         }
@@ -39,6 +50,7 @@ public class MoreTexts : MonoBehaviour
         {
             bubble.SetActive(true);
             text1.SetActive(true);
+            arrow.SetActive(true);
             isInTrigger = true;
         }
     }
@@ -47,8 +59,10 @@ public class MoreTexts : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            bubble.SetActive(false);
             text1.SetActive(false);
+            text2.SetActive(false);
+            bubble.SetActive(false);
+            arrow.SetActive(false);
             isInTrigger = false;
         }
     }
