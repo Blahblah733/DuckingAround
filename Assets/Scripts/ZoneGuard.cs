@@ -10,6 +10,7 @@ public class ZoneGuard : MonoBehaviour
 
 
     [SerializeField] private GameObject uiTextObject;
+    [SerializeField] private GameObject exclamationMarks;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,6 +18,8 @@ public class ZoneGuard : MonoBehaviour
         {
             //Exclamation.InZone = true;
             uiTextObject.SetActive(true);
+
+            exclamationMarks.SetActive(true);
             Debug.Log("InZone = true");
         }
 
@@ -27,6 +30,7 @@ public class ZoneGuard : MonoBehaviour
         if (targetObject.name.Contains(characterPrisoner.name))
         {
             uiTextObject.SetActive(false);
+            exclamationMarks.SetActive(false);
         }
     }
     
