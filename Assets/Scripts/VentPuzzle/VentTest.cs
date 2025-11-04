@@ -8,9 +8,17 @@ public class VentTest : MonoBehaviour
     public string SceneToLoad;
     public KeyCode interactKey = KeyCode.E;
 
+    public GameObject MissingToolText;
+
     private bool PlayerInside = false;
 
     public bool ScrewDriver = false;
+
+    private void Start()
+    {
+        if (MissingToolText != null)
+            MissingToolText.SetActive(false);
+    }
 
     private void Update()
     {
@@ -21,6 +29,8 @@ public class VentTest : MonoBehaviour
             if (!ScrewDriver)
             {
                 Debug.Log("You need a screwdriver to continue!");
+                if (MissingToolText != null)
+                    MissingToolText.SetActive(true);
                 return;
             }
 
@@ -48,6 +58,9 @@ public class VentTest : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerInside = false;
+
+            if (MissingToolText != null)
+                MissingToolText.SetActive(false);
         }
     }
 }
