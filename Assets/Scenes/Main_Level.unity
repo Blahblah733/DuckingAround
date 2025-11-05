@@ -7836,9 +7836,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1020830292}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -447, y: 198}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 135, y: -60}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &123361177
@@ -10713,7 +10713,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.47343695, y: 0.0053171366}
+  m_Offset: {x: -1.8025534, y: 0.0053171366}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -10724,7 +10724,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9468732, y: 0.21913257}
+  m_Size: {x: 4.605106, y: 0.21913257}
   m_EdgeRadius: 0
 --- !u!1 &180705923
 GameObject:
@@ -37331,7 +37331,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -6.278454, y: 0}
+  m_Offset: {x: -5.3452606, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -37342,7 +37342,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.1565475, y: 0.71875}
+  m_Size: {x: 2.598587, y: 0.71875}
   m_EdgeRadius: 0
 --- !u!114 &662237744
 MonoBehaviour:
@@ -80855,7 +80855,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.121
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -84950,6 +84950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LaundryDone: 0
+  WiresDone: 0
   playerPosition: {x: 0, y: 0, z: 0}
   playerRotation: {x: 0, y: 0, z: 0, w: 0}
   hasSavedPosition: 0
@@ -98212,6 +98213,7 @@ GameObject:
   - component: {fileID: 1661731049}
   - component: {fileID: 1661731048}
   - component: {fileID: 1661731050}
+  - component: {fileID: 1661731051}
   m_Layer: 0
   m_Name: support1_mid (11)
   m_TagString: Untagged
@@ -98331,6 +98333,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1661731051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661731047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3a48c030e122649a9b166e43d70ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCollider: {fileID: 1661731050}
 --- !u!1 &1665650526
 GameObject:
   m_ObjectHideFlags: 0

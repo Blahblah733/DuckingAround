@@ -124,8 +124,15 @@ public class WireConnector : MonoBehaviour
     {
         if (completedWires.Count >= 4)
         {
-            GameManager.Instance.WiresDone = true;
             Debug.Log("Puzzle Complete");
+
+            // Set wires complete in GameManager
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.WiresDone = true;
+            }
+
+            // Then load the next scene
             SceneManager.LoadScene("Riot");
         }
     }
