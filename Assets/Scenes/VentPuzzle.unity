@@ -652,6 +652,7 @@ GameObject:
   m_Component:
   - component: {fileID: 296259747}
   - component: {fileID: 296259746}
+  - component: {fileID: 296259748}
   m_Layer: 0
   m_Name: RedLightGreenLight
   m_TagString: Untagged
@@ -692,6 +693,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &296259748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296259745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1f10ffe5b690a4d894a72dc4928ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &385592242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,7 +1205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e98d54afc1b1d468030ba533f5971a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneLoadName: Main_Level
+  SceneLoadName: Riot
 --- !u!61 &694467260
 BoxCollider2D:
   m_ObjectHideFlags: 0

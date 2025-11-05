@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class SwapChar : MonoBehaviour
 {
-    [Header("Character Prefabs")]
     public GameObject characterPrisoner;
     public GameObject characterGuard;
 
@@ -45,7 +44,6 @@ public class SwapChar : MonoBehaviour
         }
         else
         {
-            // Safe fallback
             spawnPos = new Vector3(0f, 1f, 0f);
             spawnRot = Quaternion.identity;
             currentIndex = 0;
@@ -55,12 +53,18 @@ public class SwapChar : MonoBehaviour
         SpawnCharacter(currentIndex, spawnPos, spawnRot);
     }
 
-    private void Update()
+    void Update()
     {
+        // Keep reference targets updated
         if (characterTracker != null) characterTracker.targetObject = currentCharacter;
         if (zonePrisoner != null) zonePrisoner.targetObject = currentCharacter;
         if (zoneGuard != null) zoneGuard.targetObject = currentCharacter;
 
+        // Keep LaundryDone synced with GameManager
+        if (GameManager.Instance != null)
+            LaundryDone = GameManager.Instance.LaundryDone;
+
+        // Only allow switching when laundry is done
         if (Input.GetKeyDown(KeyCode.Space) && LaundryDone)
         {
             SwitchCharacter();
@@ -73,7 +77,7 @@ public class SwapChar : MonoBehaviour
             Destroy(currentCharacter);
 
         currentCharacter = Instantiate(index == 0 ? characterPrisoner : characterGuard, position, rotation);
-        currentCharacter.tag = "Player"; // camera can follow
+        currentCharacter.tag = "Player";
         currentIndex = index;
         AssignTargetToSystems();
     }

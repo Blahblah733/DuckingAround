@@ -47,4 +47,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VentPuzzle.unity
     guid: 3222d01a90363d842be58dc8d9652d81
+  - enabled: 1
+    path: Assets/Scenes/Riot.unity
+    guid: 3cb37ab2441fe104e9b92dc4e5f6cefa
+  - enabled: 1
+    path: Assets/Scenes/StartStoryline.unity
+    guid: 761cc3ebc5a4c0240b59f96971934e30
   m_configObjects: {}

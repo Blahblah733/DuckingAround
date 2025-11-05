@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public bool LaundryDone = false;
+    public bool WiresDone = false;
 
     [Header("Saved Player Data")]
     public Vector3 playerPosition;
@@ -37,5 +38,14 @@ public class GameManager : MonoBehaviour
         hasSavedPosition = true;
 
         Debug.Log($"[GameManager] Saved position: {playerPosition}, Character index: {characterIndex}");
+    }
+
+    public void ClearSavedPosition()
+    {
+        playerPosition = Vector3.zero;
+        playerRotation = Quaternion.identity;
+        hasSavedPosition = false;
+
+        Debug.Log("[GameManager] Cleared saved player position.");
     }
 }

@@ -13,6 +13,8 @@ public class MoreTexts4 : MonoBehaviour
     public GameObject bubble;
     public GameObject arrow;
 
+    public VentTest ventTest;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,13 @@ public class MoreTexts4 : MonoBehaviour
                 text2.SetActive(false);
                 text3.SetActive(false);
                 text4.SetActive(true);
+
+                // Give the player the screwdriver
+                if (ventTest != null)
+                {
+                    ventTest.ScrewDriver = true;
+                    Debug.Log("Player received the screwdriver!");
+                }
             }
             if (keyPressCount == 4)
             {
