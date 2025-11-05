@@ -29,7 +29,7 @@ public class LockpickDoor : MonoBehaviour
             GameObject player = GameObject.FindWithTag("Player");
             if (player != null && GameManager.Instance != null)
             {
-                GameManager.Instance.SavePlayerTransform(player.transform);
+                GameManager.Instance.SavePlayerTransform(player.transform, 0); // 0 = Prisoner
             }
 
             SceneManager.LoadScene(sceneToLoad);

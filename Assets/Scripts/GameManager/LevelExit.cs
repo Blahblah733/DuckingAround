@@ -26,7 +26,7 @@ public class LevelExit : MonoBehaviour
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
             var player = GameObject.FindWithTag("Player").transform;
-            GameManager.Instance.SavePlayerTransform(player);
+            GameManager.Instance.SavePlayerTransform(player.transform, 0); // 0 = Prisoner
             SceneManager.LoadScene(minigameSceneName);
         }
     }

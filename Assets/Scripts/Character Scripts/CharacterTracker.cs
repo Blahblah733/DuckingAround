@@ -10,27 +10,30 @@ public class CharacterTracker : MonoBehaviour
     public GameObject characterPrisoner;
     public GameObject characterGuard;
     public GameObject targetObject;
-    //public TextMeshProUGUI uiText;
+
+    // Private variable to store what type of character targetObject is
+    public enum CharacterType { None, Prisoner, Guard, Unknown }
+    public CharacterType currentTargetType = CharacterType.None;
+
     void Update()
     {
-        //if (targetObject == null)
-        //{
-        //    uiText.text = "No Character";
-        //    return;
-        //}
+        if (targetObject == null)
+        {
+            currentTargetType = CharacterType.None;
+            return;
+        }
 
-        //if (targetObject.name.Contains(characterPrisoner.name))
-        //{
-        //    //uiText.text = "Prisoner";
-        //}
-        //else if (targetObject.name.Contains(characterGuard.name))
-        //{
-        //    //uiText.text = "Guard";
-        //}
-        //else
-        //{
-        //    uiText.text = "Unknown Character";
-        //}
-
+        if (targetObject.name.Contains(characterPrisoner.name))
+        {
+            currentTargetType = CharacterType.Prisoner;
+        }
+        else if (targetObject.name.Contains(characterGuard.name))
+        {
+            currentTargetType = CharacterType.Guard;
+        }
+        else
+        {
+            currentTargetType = CharacterType.Unknown;
+        }
     }
 }

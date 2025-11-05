@@ -5,49 +5,67 @@ using UnityEngine.SceneManagement;
 
 public class LaundryDoor : MonoBehaviour
 {
-    public string sceneToLoad;                 // Wire
-    public KeyCode interactKey = KeyCode.E;    // key to press
-    public BoxCollider2D colliderToDisable;      // Door that Unlocks
+    public string sceneToLoad;
+    public KeyCode interactKey = KeyCode.E;
+    public BoxCollider2D colliderToDisable;
 
     private bool playerInside = false;
 
     void Start()
     {
-        // If puzzle is already complete, disable the collider immediately
         if (laundryState.LaundryComplete && colliderToDisable != null)
-        {
             colliderToDisable.enabled = false;
-        }
     }
 
     void Update()
     {
-        // Only allow interaction if player is inside the trigger AND puzzle not completed
-        if (playerInside && !laundryState.LaundryComplete && Input.GetKeyDown(interactKey))
+        if (playerInside && Input.GetKeyDown(interactKey))
         {
-            Debug.Log("Load Lockpick");
-            SceneManager.LoadScene(sceneToLoad);
+            if (!laundryState.LaundryComplete)
+            {
+                SavePlayerAndLoadScene();
+            }
+            else
+            {
+                Debug.Log("Puzzle already completed");
+            }
         }
-        else if (playerInside && laundryState.LaundryComplete && Input.GetKeyDown(interactKey))
+    }
+
+    void SavePlayerAndLoadScene()
+    {
+        SwapChar swapChar = FindObjectOfType<SwapChar>();
+        if (swapChar != null && GameManager.Instance != null)
         {
-            Debug.Log("Puzzle already completed, cannot open lockpick scene.");
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                GameManager.Instance.SavePlayerTransform(player.transform, swapChar.currentIndex);
+                Debug.Log($"[LaundryDoor] Saved player position {player.transform.position}, index {swapChar.currentIndex}");
+            }
         }
+
+        // Load asynchronously to ensure save completes
+        StartCoroutine(LoadSceneAsync(sceneToLoad));
+    }
+
+    private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        yield return null; // wait one frame
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        while (!asyncLoad.isDone)
+            yield return null;
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
-        {
             playerInside = true;
-            Debug.Log("Press E to enter scene.");
-        }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
-        {
             playerInside = false;
-        }
     }
 }

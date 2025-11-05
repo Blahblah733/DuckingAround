@@ -868,7 +868,7 @@ MonoBehaviour:
   tolerance: 90
   failText: {fileID: 483393145}
   completeText: {fileID: 307726850}
-  sceneToLoad: Main_Level
+  sceneToLoad: End
   sceneFailed: Puzzle Failed
 --- !u!4 &545454186
 Transform:

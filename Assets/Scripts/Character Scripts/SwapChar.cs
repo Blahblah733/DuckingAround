@@ -16,42 +16,42 @@ public class SwapChar : MonoBehaviour
     public ZoneGuard zoneGuard;
 
     [Header("Spawn Settings")]
-    public Transform spawnPoint; //  Assign this in Inspector (start position)
+    public Transform spawnPoint; // optional
 
     [Header("Gameplay Conditions")]
-    public bool LaundryDone = false; //  Must be true to swap characters
+    public bool LaundryDone = false;
 
     private GameObject currentCharacter;
-    private int currentIndex = 0; // 0 = Prisoner, 1 = Guard
+    public int currentIndex = 0; // 0 = Prisoner, 1 = Guard
 
-    private void Start()
+    void Start()
     {
-        if (GameManager.Instance != null)
-        {
-            LaundryDone = GameManager.Instance.LaundryDone;
-            Debug.Log($"[SwapChar] LaundryDone is {LaundryDone}");
-        }
+        Vector3 spawnPos;
+        Quaternion spawnRot;
 
-        // Determine spawn position
-        Vector3 spawnPos = Vector3.zero;
-        Quaternion spawnRot = Quaternion.identity;
-
-        // Use saved position if available
         if (GameManager.Instance != null && GameManager.Instance.hasSavedPosition)
         {
             spawnPos = GameManager.Instance.playerPosition;
             spawnRot = GameManager.Instance.playerRotation;
             currentIndex = GameManager.Instance.lastCharacterIndex;
-            Debug.Log($"SwapChar: Restoring saved player position {spawnPos} for character {currentIndex}");
+            Debug.Log($"[SwapChar] Restoring saved position {spawnPos} for character {currentIndex}");
         }
         else if (spawnPoint != null)
         {
-            // If no saved data, use the assigned spawn point
             spawnPos = spawnPoint.position;
             spawnRot = spawnPoint.rotation;
+            currentIndex = 0;
+            Debug.Log($"[SwapChar] No saved position, spawning at spawnPoint {spawnPos}");
+        }
+        else
+        {
+            // Safe fallback
+            spawnPos = new Vector3(0f, 1f, 0f);
+            spawnRot = Quaternion.identity;
+            currentIndex = 0;
+            Debug.Log("[SwapChar] No saved position or spawnPoint, spawning at default location (0,1,0)");
         }
 
-        // Spawn the starting character
         SpawnCharacter(currentIndex, spawnPos, spawnRot);
     }
 
@@ -61,7 +61,6 @@ public class SwapChar : MonoBehaviour
         if (zonePrisoner != null) zonePrisoner.targetObject = currentCharacter;
         if (zoneGuard != null) zoneGuard.targetObject = currentCharacter;
 
-        // Only allow switching if LaundryDone is true
         if (Input.GetKeyDown(KeyCode.Space) && LaundryDone)
         {
             SwitchCharacter();
@@ -73,11 +72,8 @@ public class SwapChar : MonoBehaviour
         if (currentCharacter != null)
             Destroy(currentCharacter);
 
-        if (index == 0)
-            currentCharacter = Instantiate(characterPrisoner, position, rotation);
-        else
-            currentCharacter = Instantiate(characterGuard, position, rotation);
-
+        currentCharacter = Instantiate(index == 0 ? characterPrisoner : characterGuard, position, rotation);
+        currentCharacter.tag = "Player"; // camera can follow
         currentIndex = index;
         AssignTargetToSystems();
     }
@@ -102,8 +98,6 @@ public class SwapChar : MonoBehaviour
         if (zonePrisoner != null) zonePrisoner.targetObject = currentCharacter;
         if (zoneGuard != null) zoneGuard.targetObject = currentCharacter;
     }
-
-    public GameObject GetCurrentCharacter() => currentCharacter;
 }
 
 

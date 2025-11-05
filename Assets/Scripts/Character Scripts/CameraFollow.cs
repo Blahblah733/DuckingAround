@@ -8,36 +8,36 @@ public class CameraFollow : MonoBehaviour
     public Vector3 offset; // Optional offset
     public float smoothSpeed = 0.125f;
 
-    private GameObject targetObject;  // The object the camera follows (currentCharacter from SwapChar)
-
-    public SwapChar swapCharScript;   // Reference to the SwapChar script (drag this in the Inspector)
+    private GameObject targetObject;  // The object the camera follows
 
     void Start()
     {
-        // Ensure swapCharScript is assigned
-        if (swapCharScript != null)
+        // Find the player object by tag at the start
+        targetObject = GameObject.FindGameObjectWithTag("Player");
+        if (targetObject == null)
         {
-            targetObject = swapCharScript.GetCurrentCharacter(); // Get currentCharacter from SwapChar
+            Debug.LogError("[CameraFollow] Could not find object with tag 'Player'");
         }
     }
 
     void LateUpdate()
     {
-        // Ensure we always have the targetObject (currentCharacter)
-        if (swapCharScript != null && swapCharScript.GetCurrentCharacter() != targetObject)
+        // Always check if the current player exists in case it was swapped
+        GameObject currentPlayer = GameObject.FindGameObjectWithTag("Player");
+        if (currentPlayer != null)
         {
-            targetObject = swapCharScript.GetCurrentCharacter(); // Update targetObject to the latest currentCharacter
+            targetObject = currentPlayer;
         }
 
-        if (targetObject == null) return; // Do nothing if targetObject is null
+        if (targetObject == null) return; // Do nothing if no player
 
         Transform targetTransform = targetObject.transform;
 
-        // The camera follows the target regardless of whether it's a clone
+        // Calculate the desired camera position with offset
         Vector3 desiredPosition = targetTransform.position + offset;
-        desiredPosition.z = transform.position.z; // Keep the camera's Z-position constant
+        desiredPosition.z = transform.position.z; // Keep camera Z constant
 
-        // Smoothly move the camera towards the desired position
+        // Smoothly move the camera
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
         transform.position = smoothedPosition;
     }

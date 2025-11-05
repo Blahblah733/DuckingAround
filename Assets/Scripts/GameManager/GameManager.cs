@@ -29,9 +29,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Saves player transform and the current active character index.
-    /// </summary>
     public void SavePlayerTransform(Transform player, int characterIndex)
     {
         playerPosition = player.position;
@@ -40,13 +37,5 @@ public class GameManager : MonoBehaviour
         hasSavedPosition = true;
 
         Debug.Log($"[GameManager] Saved position: {playerPosition}, Character index: {characterIndex}");
-    }
-
-    /// <summary>
-    /// Overload that saves using the last known character index.
-    /// </summary>
-    public void SavePlayerTransform(Transform player)
-    {
-        SavePlayerTransform(player, lastCharacterIndex);
     }
 }
