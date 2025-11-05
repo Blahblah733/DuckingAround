@@ -41,8 +41,15 @@ public class SortTracker : MonoBehaviour
     private void WinCheck()
     {
         Debug.Log("win");
-        SceneManager.LoadScene("Main_Level");
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.LaundryDone = true;
+            Debug.Log("[SortTracker] LaundryDone set to true in GameManager");
+        }
+        
         resultText.gameObject.SetActive(true);
-        laundryState.LaundryComplete = true;
+
+        SceneManager.LoadScene("Main_Level");
+
     }
 }

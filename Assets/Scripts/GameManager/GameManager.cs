@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public bool LaundryDone = false;
+
     [Header("Saved Player Data")]
     public Vector3 playerPosition;
     public Quaternion playerRotation;

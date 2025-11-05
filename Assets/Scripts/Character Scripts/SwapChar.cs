@@ -26,6 +26,12 @@ public class SwapChar : MonoBehaviour
 
     private void Start()
     {
+        if (GameManager.Instance != null)
+        {
+            LaundryDone = GameManager.Instance.LaundryDone;
+            Debug.Log($"[SwapChar] LaundryDone is {LaundryDone}");
+        }
+
         // Determine spawn position
         Vector3 spawnPos = Vector3.zero;
         Quaternion spawnRot = Quaternion.identity;
